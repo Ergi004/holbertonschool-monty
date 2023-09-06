@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MONTY_H
+#define MONTY_H
 #include <stddef.h>
 #include <unistd.h>
 #include <string.h>

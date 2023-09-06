@@ -1,11 +1,11 @@
-#include <monty.h>
+#include "monty.h"
 
 int value;
 
 /**
  */
 
-void _push(stack_t **top, unsigned int line_number)
+void _push(stack_t **top)
 {
 	stack_t *new = malloc(sizeof(stack_t));
 	
@@ -22,8 +22,8 @@ void _push(stack_t **top, unsigned int line_number)
 		new->next = NULL;
 	else 
 	{
-		nnew->next = top;
-		*top->prev = NULL;
+		new->next = *top;
+		new->prev = NULL;
 	}
 	*top = new;
 }
@@ -31,14 +31,14 @@ void _push(stack_t **top, unsigned int line_number)
 /**
  */
 
-void _pall(stack_t **top, unsigned int line_number)
+void _pall(stack_t **top)
 {
-	stact_t *tmp = *top;
+	stack_t *tmp = *top;
 
 	while (top != NULL)
 	{
 		printf("%d\n", tmp->n);
-	       tmp = tmp->next;
+		tmp = tmp->next;
 	}
 }
 

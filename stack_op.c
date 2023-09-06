@@ -1,6 +1,5 @@
 #include "monty.h"
 
-int value;
 
 /**
  */
@@ -41,8 +40,3 @@ void _pall(stack_t **top)
 		tmp = tmp->next;
 	}
 }
-
-/**
- */
-
-

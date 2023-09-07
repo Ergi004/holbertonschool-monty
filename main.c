@@ -46,12 +46,12 @@ int main(int argc, char **argv)
         if (strcmp(token, "push") == 0)
         {
             token = strtok(NULL, " \n");
-            /*if (token == NULL)
+            if (token == NULL)
             {
                 fprintf(stderr, "L%d: usage: push integer\n", line_number);
                 exit(EXIT_FAILURE);
             }
-	    */
+	   
             op_func(&stack, atoi(token));
         }
         else

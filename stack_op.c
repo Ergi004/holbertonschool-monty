@@ -15,12 +15,6 @@ void _push(stack_t **top,unsigned int line_number)
         fprintf(stderr, "Error: malloc failed\n");
         exit(EXIT_FAILURE);
     }
-    if ((strcmp(opcode, "push") == 0) &&
-	((strspn(number, "+-0123456789") == 0) || hasAlpha))
-	{
-		fprintf(stderr, "L%i: usage: push integer\n", line);
-		return(EXIT_FAILURE);
-	}
 
     new->n = line_number;
     new->prev = NULL;

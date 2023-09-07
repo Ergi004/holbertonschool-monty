@@ -52,13 +52,35 @@ void _pall(stack_t **top, unsigned int __attribute__((unused)) line_number)
 /**
  */
 
-/**void _pint(stack_t **top, unsigned int line_number)
+void _pint(stack_t **top, unsigned int line_number)
 {
-
 	if (top == NULL || *top == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*top)->n);
-}*/
+}
+
+
+/**
+ */
+
+void _pop(stack_t **top, unsigned int line_number)
+{
+	stack_t *tmp = *top;
+
+	if (!top || !(*top))
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	
+	*top = (*top)->next;
+	if (*top)
+	{
+		(*top)->prev = NULL;
+	}
+	free(tmp);
+}
+				

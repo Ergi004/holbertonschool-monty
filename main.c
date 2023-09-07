@@ -15,11 +15,12 @@ int main(int argc, char **argv)
 
     if (argc != 2)
     {
-	    fprintf(stderr, "USAGE: monty file");
+	    fprintf(stderr, "USAGE: monty file\n");
 	    return(EXIT_FAILURE);
     }
     file = fopen(argv[1], "r");
     if (file == NULL)
+	    fprintf(stderr, "Error: Can't open file HoLbErToN\n");
 	    return(EXIT_FAILURE);
 
     while (fgets(buffer, BUFFER_SIZE, file) != NULL)

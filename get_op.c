@@ -3,6 +3,7 @@
 instruction_t instruction_op[] = {
                                 {"push", _push},
                                 {"pop", _pop},
+				{"pall", _pall},
                                 {NULL,NULL}
         };
 void (*get_op(char *token, unsigned int __attribute__((unused)) line))(stack_t **, unsigned int)

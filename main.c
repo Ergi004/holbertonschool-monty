@@ -5,18 +5,25 @@
 
 #define BUFFER_SIZE 1024
 
-int main(void)
+int main(int argc, char **argv)
 {
     stack_t *stack = NULL;
     char buffer[BUFFER_SIZE];
     char *token;
+    FILE *file;
     unsigned int line_number = 0;
 
-    while (fgets(buffer, sizeof(buffer), stdin) != NULL)
+    if (argc != 2)
+    {
+	    fprintf(stderr, "SS");
+	    return(EXIT_FAILURE);
+    }
+    file = fopen(argv[1], "r");
+    while (fgets(buffer, BUFFER_SIZE, file) != NULL)
     {
         line_number++;
 
-        token = strtok(buffer, " \t\n");
+        token = strtok(buffer, " \n");
 
         if (token == NULL || token[0] == '#')
         {
@@ -33,14 +40,14 @@ int main(void)
 
         if (strcmp(token, "push") == 0)
         {
-            token = strtok(NULL, " \t\n");
-            if (token == NULL)
+            token = strtok(NULL, " \n");
+            /*if (token == NULL)
             {
                 fprintf(stderr, "L%d: usage: push integer\n", line_number);
                 exit(EXIT_FAILURE);
             }
-
-            op_func(&stack, line_number);
+	    */
+            op_func(&stack, atoi(token));
         }
         else
         {

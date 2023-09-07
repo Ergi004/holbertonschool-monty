@@ -7,32 +7,28 @@
 /**
  */
 
-void _push(stack_t **top, unsigned int __attribute__((unused)) line_number)
+void _push(stack_t **top,unsigned int line_number)
 {
-	stack_t *new;
-       
-	new = malloc(sizeof(stack_t));
-	
-	if (!new)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+	stack_t *new = malloc(sizeof(stack_t));
+    if (!new)
+    {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(EXIT_FAILURE);
+    }
 
-	new->n = value;
+    new->n = line_number;
+    new->prev = NULL;
 
-	new->prev = NULL;
-	
-	if (*top == NULL)
-	{
-		new->next = NULL;
-	}
-	else 
-	{
-		new->next = *top;
-		(*top)->prev = new;
-	}
-	*top = new;
+    if (*top == NULL)
+    {
+        new->next = NULL;
+    }
+    else
+    {
+        new->next = *top;
+        (*top)->prev = new;
+    }
+    *top = new;
 }
 
 /**

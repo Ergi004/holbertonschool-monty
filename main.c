@@ -20,7 +20,7 @@ int main(int argc, char **argv)
     }
     file = fopen(argv[1], "r");
     if (file == NULL)
-	    retun(EXIT_FAILURE);
+	    return(EXIT_FAILURE);
 
     while (fgets(buffer, BUFFER_SIZE, file) != NULL)
     {

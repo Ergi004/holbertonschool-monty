@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	    return(EXIT_FAILURE);
     }
     file = fopen(argv[1], "r");
-    if (file == -1)
+    if (file == NULL)
 	    retun(EXIT_FAILURE);
 
     while (fgets(buffer, BUFFER_SIZE, file) != NULL)

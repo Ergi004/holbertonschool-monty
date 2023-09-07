@@ -13,13 +13,6 @@ int main(void)
 
     printf("Printing the stack:\n");
     _pall(&top, value);
-/**
-    while (top != NULL)
-    {
-        stack_t *temp = top;
-        top = top->next;
-        free(temp);
-    }
-*/
+
     return (0);
 }

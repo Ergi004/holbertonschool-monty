@@ -50,12 +50,12 @@ void _pall(stack_t **top, unsigned int __attribute__((unused)) line_number)
 
 void _pint(stack_t **top, unsigned int line_number)
 {
-	if (*top == NULL)
+	if (top == NULL || *top == NULL)
 	{
-		fprintf(stderr, "L%i: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%i\n", (*top)->n);
+	printf("%d\n", (*top)->n);
 }
 
 

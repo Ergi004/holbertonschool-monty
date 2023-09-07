@@ -5,6 +5,22 @@
 #include <stdbool.h>
 
 #define BUFFER_SIZE 1024
+bool is_integer(const char *str) {
+    // Check if the string is empty or starts with a '-' or '+'
+    if (str == NULL || *str == '\0' || (*str == '-' && *(str + 1) == '\0') || (*str == '+' && *(str + 1) == '\0')) {
+        return false;
+    }
+
+    // Check each character in the string
+    while (*str != '\0') {
+        if (*str < '0' || *str > '9') {
+            return false; // Character is not a digit
+        }
+        str++;
+    }
+
+    return true; // All characters are digits
+}
 
 int main(int argc, char **argv)
 {
@@ -108,20 +124,3 @@ int main(int argc, char **argv)
     return (EXIT_SUCCESS);
 }
 
-
-bool is_integer(const char *str) {
-    // Check if the string is empty or starts with a '-' or '+'
-    if (str == NULL || *str == '\0' || (*str == '-' && *(str + 1) == '\0') || (*str == '+' && *(str + 1) == '\0')) {
-        return false;
-    }
-
-    // Check each character in the string
-    while (*str != '\0') {
-        if (*str < '0' || *str > '9') {
-            return false; // Character is not a digit
-        }
-        str++;
-    }
-
-    return true; // All characters are digits
-}

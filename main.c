@@ -66,6 +66,6 @@ int main(int argc, char **argv)
         stack = stack->next;
         free(temp);
     }
-
+fclose(file);
     return (EXIT_SUCCESS);
 }

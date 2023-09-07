@@ -15,10 +15,13 @@ int main(int argc, char **argv)
 
     if (argc != 2)
     {
-	    fprintf(stderr, "monty file");
+	    fprintf(stderr, "USAGE: monty file");
 	    return(EXIT_FAILURE);
     }
     file = fopen(argv[1], "r");
+    if (file == -1)
+	    retun(EXIT_FAILURE);
+
     while (fgets(buffer, BUFFER_SIZE, file) != NULL)
     {
         line_number++;

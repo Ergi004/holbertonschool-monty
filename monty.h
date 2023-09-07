@@ -45,5 +45,5 @@ void _swap(stack_t **top, unsigned int line_number);
 void _add(stack_t **top, unsigned int line_number);
 void _nop(stack_t **top, unsigned int line_number);
 void (*get_op(char *token, unsigned int line))(stack_t **, unsigned int);
-
+bool is_integer(const char *str);
 #endif

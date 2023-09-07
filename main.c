@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     file = fopen(argv[1], "r");
     if (file == NULL)
     {
-	    fprintf(stderr, "Error: Can't open file HoLbErToN\n");
+	    fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 	    return(EXIT_FAILURE);
     }
     while (fgets(buffer, BUFFER_SIZE, file) != NULL)
@@ -49,16 +49,54 @@ int main(int argc, char **argv)
             if (token == NULL)
             {
                 fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                exit(EXIT_FAILURE);
+                fclose(file);
+		while (stack != NULL)
+		{
+			stack_t *temp = stack;
+			stack = stack->next;
+			free(temp);
+		}
+		return(EXIT_FAILURE);
+	    }
+	    if (!is_integer(token))
+            {
+                fprintf(stderr, "L%d: usage: push integer\n", line_number);
+                fclose(file);
+                while (stack != NULL)
+                {
+                    stack_t *temp = stack;
+                    stack = stack->next;
+                    free(temp);
+                }
+		return(EXIT_FAILURE);
             }
 	   
             op_func(&stack, atoi(token));
         }
-        else
+        else if (strcmp(token, "pint") == 0)
         {
+            if (stack == NULL)
+            {
+	  	 fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+                fclose(file);
+                while (stack != NULL)
+                {
+                    stack_t *temp = stack;
+                    stack = stack->next;
+                    free(temp);
+                
+	}
+		return(EXIT_FAILURE);
+	    }
+    
             op_func(&stack, line_number);
         }
+	else
+		op_func(&stack, line_number);
+
     }
+
+    fclose(file);
 
     while (stack != NULL)
     {
@@ -66,6 +104,5 @@ int main(int argc, char **argv)
         stack = stack->next;
         free(temp);
     }
-fclose(file);
     return (EXIT_SUCCESS);
 }

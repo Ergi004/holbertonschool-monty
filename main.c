@@ -2,25 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 #define BUFFER_SIZE 1024
-bool is_integer(const char *str) {
-    // Check if the string is empty or starts with a '-' or '+'
-    if (str == NULL || *str == '\0' || (*str == '-' && *(str + 1) == '\0') || (*str == '+' && *(str + 1) == '\0')) {
-        return false;
-    }
-
-    // Check each character in the string
-    while (*str != '\0') {
-        if (*str < '0' || *str > '9') {
-            return false; // Character is not a digit
-        }
-        str++;
-    }
-
-    return true; // All characters are digits
-}
 
 int main(int argc, char **argv)
 {
@@ -66,36 +49,16 @@ int main(int argc, char **argv)
             if (token == NULL)
             {
                 fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                fclose(file);
-		while (stack != NULL)
-		{
-			stack_t *temp = stack;
-			stack = stack->next;
-			free(temp);
-		}
-		return(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	    }
-	    if (!is_integer(token))
-            {
-                fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                fclose(file);
-                while (stack != NULL)
-                {
-                    stack_t *temp = stack;
-                    stack = stack->next;
-                    free(temp);
-                }
-		return(EXIT_FAILURE);
-            }
 	   
             op_func(&stack, atoi(token));
         }
-        else if (strcmp(token, "pint") == 0)
-        {
-            if (stack == NULL)
-            {
-	  	 fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-                fclose(file);
+        else
+	{
+		op_func(&stack, line_number);
+	}
+    }
                 while (stack != NULL)
                 {
                     stack_t *temp = stack;
@@ -103,24 +66,6 @@ int main(int argc, char **argv)
                     free(temp);
                 
 	}
-		return(EXIT_FAILURE);
-	    }
-    
-            op_func(&stack, line_number);
-        }
-	else
-		op_func(&stack, line_number);
-
-    }
-
-    fclose(file);
-
-    while (stack != NULL)
-    {
-        stack_t *temp = stack;
-        stack = stack->next;
-        free(temp);
-    }
-    return (EXIT_SUCCESS);
+		fclose(file);
+		return(EXIT_SUCCESS);
 }
-

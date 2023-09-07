@@ -2,28 +2,24 @@
 
 int main(void)
 {
-    stack_t *top = NULL; // Initialize an empty stack
+    stack_t *top = NULL;
 
-    // Test the _push function
-    value = 10;
-    _push(&top);
-    value = 20;
-    _push(&top);
-    value = 30;
-    _push(&top);
+    value = 1;
+    _push(&top, value);
+    value = 2;
+    _push(&top, value);
+    value = 3;
+    _push(&top, value);
 
-    // Test the _pall function
     printf("Printing the stack:\n");
-    _pall(&top);
-
-    // Clean up the stack (you should have a function for this in monty.c)
+    _pall(&top, value);
+/**
     while (top != NULL)
     {
         stack_t *temp = top;
         top = top->next;
         free(temp);
     }
-
+*/
     return (0);
 }
-

@@ -1,13 +1,22 @@
 #include "monty.h"
 
-instruction_t instruction_op[] = {
-                                {"push", _push},
-                                {"pop", _pop},
-				{"pall", _pall},
-                                {NULL,NULL}
-        };
-void (*get_op(char *token, unsigned int __attribute__((unused)) line))(stack_t **, unsigned int)
+/**
+ * get_op - Reads the file
+ * @token: Tokenizes the commands
+ * @line: Line
+ * Return: NULL.
+ */
+
+void (*get_op(char *token, unsigned int line))(stack_t **, unsigned int)
 {
+	(void) line;
+	instruction_t instruction_op[] = {
+		{"push", _push},
+		{"pop", _pop},
+		{"pall", _pall},
+		{"pint", _pint},
+		{NULL, NULL}
+	};
 	int i;
 
 	for (i = 0; instruction_op[i].opcode != NULL; i++)

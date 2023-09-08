@@ -3,35 +3,42 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 /**
+ * _push - Adds a new element to the stack
+ * @top: The top of the stack
+ * @line_number: Line number
+ * Return: Nothing
  */
 
-void _push(stack_t **top,unsigned int line_number)
+void _push(stack_t **top, unsigned int line_number)
 {
 	stack_t *new = malloc(sizeof(stack_t));
-    if (!new)
-    {
-        fprintf(stderr, "Error: malloc failed\n");
-        exit(EXIT_FAILURE);
-    }
 
-    new->n = line_number;
-    new->prev = NULL;
+	if (!new)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new->n = line_number;
+	new->prev = NULL;
 
-    if (*top == NULL)
-    {
-        new->next = NULL;
-    }
-    else
-    {
-        new->next = *top;
-        (*top)->prev = new;
-    }
-    *top = new;
+	if (*top == NULL)
+	{
+		new->next = NULL;
+	}
+	else
+	{
+		new->next = *top;
+		(*top)->prev = new;
+	}
+	*top = new;
 }
 
 /**
+ * _pall - Prints the elements of the stack
+ * @top: Top of the stack
+ * @line_number: Line number
+ * Return: Nothing
  */
 
 void _pall(stack_t **top, unsigned int __attribute__((unused)) line_number)
@@ -46,6 +53,10 @@ void _pall(stack_t **top, unsigned int __attribute__((unused)) line_number)
 }
 
 /**
+ * _pint - Prints the elements of the stack
+ * @top: Top of the stack
+ * @line_number: Line number
+ * Return: Nothing
  */
 
 void _pint(stack_t **top, unsigned int line_number)
@@ -58,8 +69,11 @@ void _pint(stack_t **top, unsigned int line_number)
 	printf("%d\n", (*top)->n);
 }
 
-
 /**
+ * _pop - Removes an enlement from the top of the stack
+ * @top: Top of the stack
+ * @line_number: Line number
+ * Return: Nothing
  */
 
 void _pop(stack_t **top, unsigned int line_number)
@@ -71,7 +85,7 @@ void _pop(stack_t **top, unsigned int line_number)
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	*top = (*top)->next;
 	if (*top)
 	{
@@ -79,4 +93,3 @@ void _pop(stack_t **top, unsigned int line_number)
 	}
 	free(tmp);
 }
-				

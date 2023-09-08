@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -18,7 +19,8 @@ int main(int argc, char **argv)
 	char buffer[BUFFER_SIZE], *token;
 	FILE *file;
 	unsigned int line_number = 0;
-
+	int hasAlpha = 0;
+	char *numberCopy = NULL;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -51,6 +53,23 @@ int main(int argc, char **argv)
 			if (token == NULL)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				exit(EXIT_FAILURE);
+			}
+			numberCopy = token;
+
+			while (*numberCopy)
+			{
+				if (isalpha(*numberCopy))
+				{
+					hasAlpha = 1;
+					break;
+				}
+				numberCopy++;
+			}
+			if (
+			((strspn(token, "+-0123456789") == 0) || hasAlpha))
+			{
+				fprintf(stderr, "L%i: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
 			op_func(&stack, atoi(token));

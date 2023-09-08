@@ -24,8 +24,8 @@ void _push(stack_t **top, unsigned int line_number)
 
 	if (*top == NULL)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		new->next = NULL;
+		return;
 	}
 	else
 	{

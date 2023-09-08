@@ -25,7 +25,6 @@ void _push(stack_t **top, unsigned int line_number)
 	if (*top == NULL)
 	{
 		new->next = NULL;
-		return;
 	}
 	else
 	{

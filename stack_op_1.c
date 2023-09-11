@@ -6,20 +6,19 @@
 /**
  * _add - Adds the top two elements of the stack.
  * @stack: Stack
- * @line_lumber: Line number
+ * @line_number: Line number
  * Return: Nothing
  */
 
 void _add(stack_t **stack, unsigned int line_number)
 {
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
-        if (*stack == NULL || (*stack)->next == NULL)
-        {
-                fprintf(stderr, "l%d: can't add, stack too short\n", line_number);
-                exit(EXIT_FAILURE);
-        }
-
-	int result = (*stack)->n +(*stack)->next->n;
+	int result = (*stack)->n + (*stack)->next->n;
 	stack_t *tmp = *stack;
 	*stack = (*stack)->next;
 	free(tmp);
@@ -29,7 +28,7 @@ void _add(stack_t **stack, unsigned int line_number)
 /**
  * _nop - Doesn't do anything
  * @stack: Stack
- * @line_lumber: Line number
+ * @line_number: Line neumber
  * Return: Nothing
  */
 

@@ -95,6 +95,10 @@ void _pop(stack_t **top, unsigned int line_number)
 }
 
 /**
+ * _swap - Swaps the top two elements of the stack
+ * @stack: Stack
+ * @line_number: Line number
+ * Return: Nothing
  */
 
 void _swap(stack_t **stack, unsigned int line_number)
